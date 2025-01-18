@@ -3,6 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --grey-0: #f0f0f0;
+  --green-500: #5d8c55;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #5d8c55;

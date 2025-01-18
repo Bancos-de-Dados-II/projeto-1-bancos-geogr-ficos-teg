@@ -14,5 +14,17 @@
 
 .wrapper {
   width: 100%;
-  /* position: relative; */
+  position: relative;
+}
+
+.overlay-map {
+  z-index: 1000;
+  position: absolute;
+}
+
+#overlay-edit {
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 1rem;
 }
