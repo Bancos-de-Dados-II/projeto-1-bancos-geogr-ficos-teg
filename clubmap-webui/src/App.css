@@ -1,0 +1,18 @@
+.leaflet-container {
+  font-family: "Roboto", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  height: 100vh;
+  width: 100%;
+  border-radius: 0rem;
+}
+
+@media (min-width: 1280px) {
+  .leaflet-container {
+    height: 90vh;
+    border-radius: 1rem;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  /* position: relative; */
+}
