@@ -1,0 +1,163 @@
+import { Icon, LatLng } from "leaflet";
+import { Club } from "../types";
+
+// oferecimento chat gpt, o melhor que há
+export const mockClubs: Club[] = [
+  {
+    id: "1",
+    nome: "Clube Estrela",
+    tecnico: "Carlos Silva",
+    presidente: "João Mendes",
+    anoFundacao: 1920,
+    geocode: new LatLng(-23.55052, -46.633308),
+    principalRival: "Clube Lunar",
+    estadio: "Estádio Estrela",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [
+      { nome: "Campeonato Brasileiro", conquistas: 5 },
+      { nome: "Copa Libertadores", conquistas: 2 },
+    ],
+  },
+  {
+    id: "2",
+    nome: "Clube Lunar",
+    tecnico: "Fernando Lopes",
+    presidente: "Ana Costa",
+    anoFundacao: 1932,
+    geocode: new LatLng(-22.906847, -43.172896),
+    principalRival: "Clube Estrela",
+    estadio: "Arena Lunar",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [
+      { nome: "Campeonato Carioca", conquistas: 10 },
+      { nome: "Copa do Brasil", conquistas: 3 },
+    ],
+  },
+  {
+    id: "3",
+    nome: "Atlético Horizonte",
+    tecnico: "Roberto Nunes",
+    presidente: "Cláudia Ferreira",
+    anoFundacao: 1908,
+    geocode: new LatLng(-19.924501, -43.935238),
+    estadio: "Estádio Horizonte",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [
+      { nome: "Campeonato Mineiro", conquistas: 25 },
+      { nome: "Campeonato Brasileiro", conquistas: 3 },
+    ],
+  },
+  {
+    id: "4",
+    nome: "Esporte Clube Aurora",
+    tecnico: "Mariana Souza",
+    presidente: "Pedro Gomes",
+    anoFundacao: 1950,
+    geocode: new LatLng(-25.429596, -49.271272),
+    estadio: "Estádio Aurora",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [{ nome: "Campeonato Paranaense", conquistas: 8 }],
+  },
+  {
+    id: "5",
+    nome: "Grêmio Nacional",
+    tecnico: "Eduardo Oliveira",
+    presidente: "Marta Lima",
+    anoFundacao: 1912,
+    geocode: new LatLng(-30.034647, -51.217659),
+    estadio: "Arena Nacional",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [
+      { nome: "Copa Libertadores", conquistas: 3 },
+      { nome: "Mundial de Clubes", conquistas: 1 },
+    ],
+  },
+  {
+    id: "6",
+    nome: "Clube do Sol",
+    tecnico: "Luís Alberto",
+    presidente: "Sofia Andrade",
+    anoFundacao: 1945,
+    geocode: new LatLng(-12.9714, -38.5014),
+    estadio: "Sol Arena",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [{ nome: "Campeonato Baiano", conquistas: 15 }],
+  },
+  {
+    id: "7",
+    nome: "União do Norte",
+    tecnico: "André Pereira",
+    presidente: "Renata Castro",
+    anoFundacao: 1970,
+    geocode: new LatLng(-3.119028, -60.021731),
+    estadio: "Estádio do Norte",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [{ nome: "Campeonato Amazonense", conquistas: 10 }],
+  },
+  {
+    id: "8",
+    nome: "Real Pantanal",
+    tecnico: "Sergio Ribeiro",
+    presidente: "Helena Marques",
+    anoFundacao: 1980,
+    geocode: new LatLng(-15.60141, -56.097891),
+    estadio: "Pantanal Arena",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [{ nome: "Campeonato Mato-Grossense", conquistas: 12 }],
+  },
+  {
+    id: "9",
+    nome: "Clube da Serra",
+    tecnico: "Daniel Carvalho",
+    presidente: "Lucas Barbosa",
+    anoFundacao: 1965,
+    geocode: new LatLng(-29.3771, -50.8755),
+    estadio: "Estádio da Serra",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [{ nome: "Campeonato Gaúcho", conquistas: 2 }],
+  },
+  {
+    id: "10",
+    nome: "Futebol Clube Amazônia",
+    tecnico: "Thiago Almeida",
+    presidente: "Gabriela Duarte",
+    anoFundacao: 1898,
+    geocode: new LatLng(-1.455833, -48.50389),
+    estadio: "Estádio Amazônia",
+    escudo: new Icon({
+      iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
+      iconSize: [40, 40],
+    }),
+    titulos: [
+      { nome: "Campeonato Paraense", conquistas: 18 },
+      { nome: "Copa Verde", conquistas: 2 },
+    ],
+  },
+];
