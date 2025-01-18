@@ -14,7 +14,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio Estrela",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [
       { nome: "Campeonato Brasileiro", conquistas: 5 },
@@ -32,10 +32,19 @@ export const mockClubs: Club[] = [
     estadio: "Arena Lunar",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [
       { nome: "Campeonato Carioca", conquistas: 10 },
+      {
+        nome: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        conquistas: 3,
+      },
+      { nome: "Copa do Brasil", conquistas: 3 },
+      { nome: "Copa do Brasil", conquistas: 3 },
+      { nome: "Copa do Brasil", conquistas: 3 },
+      { nome: "Copa do Brasil", conquistas: 3 },
+      { nome: "Copa do Brasil", conquistas: 3 },
       { nome: "Copa do Brasil", conquistas: 3 },
     ],
   },
@@ -49,7 +58,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio Horizonte",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [
       { nome: "Campeonato Mineiro", conquistas: 25 },
@@ -66,7 +75,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio Aurora",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [{ nome: "Campeonato Paranaense", conquistas: 8 }],
   },
@@ -80,7 +89,7 @@ export const mockClubs: Club[] = [
     estadio: "Arena Nacional",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [
       { nome: "Copa Libertadores", conquistas: 3 },
@@ -97,7 +106,7 @@ export const mockClubs: Club[] = [
     estadio: "Sol Arena",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [{ nome: "Campeonato Baiano", conquistas: 15 }],
   },
@@ -111,7 +120,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio do Norte",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [{ nome: "Campeonato Amazonense", conquistas: 10 }],
   },
@@ -125,7 +134,7 @@ export const mockClubs: Club[] = [
     estadio: "Pantanal Arena",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [{ nome: "Campeonato Mato-Grossense", conquistas: 12 }],
   },
@@ -139,7 +148,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio da Serra",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [{ nome: "Campeonato Gaúcho", conquistas: 2 }],
   },
@@ -153,7 +162,7 @@ export const mockClubs: Club[] = [
     estadio: "Estádio Amazônia",
     escudo: new Icon({
       iconUrl: "https://upload.wikimedia.org/wikipedia/pt/9/98/Real_Madrid.png",
-      iconSize: [40, 40],
+      iconSize: [30, 30],
     }),
     titulos: [
       { nome: "Campeonato Paraense", conquistas: 18 },

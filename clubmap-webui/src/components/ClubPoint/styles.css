@@ -1,0 +1,43 @@
+.leaflet-popup {
+  margin-bottom: 2.5rem !important;
+  width: 20rem;
+}
+
+#club-info-wrapper {
+  max-height: 20rem;
+  width: 18.3rem;
+  overflow-y: auto;
+}
+
+#club-info-header {
+  display: flex;
+  & h2 {
+    font-size: 1.5rem;
+    width: 85%;
+    word-wrap: break-word;
+    text-align: left;
+  }
+}
+
+#club-info-attributes {
+  list-style: none;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 95%;
+
+  & > li {
+    font-weight: bold;
+  }
+
+  & li span {
+    font-weight: normal;
+  }
+
+  & li > ul {
+    font-weight: normal;
+    gap: 0.2rem;
+    padding-left: 1.5rem;
+  }
+}

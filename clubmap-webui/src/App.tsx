@@ -1,8 +1,11 @@
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useEffect } from "react";
 
+import { mockClubs } from "./mock";
+
 import "./App.css";
 import "leaflet/dist/leaflet.css";
+import ClubPoint from "./components/ClubPoint";
 
 interface VerticalBoundsProps {
   minLat: number;
@@ -41,13 +44,18 @@ export default function App() {
         center={[-20, -50]}
         zoom={3}
         minZoom={2}
-        maxZoom={15}
+        maxZoom={18}
         zoomControl={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {mockClubs.map((club) => (
+          <ClubPoint key={club.id} club={club} />
+        ))}
+
         <VerticalBounds minLat={-40} maxLat={40} />
       </MapContainer>
     </div>
