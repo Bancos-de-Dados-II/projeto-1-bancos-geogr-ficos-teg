@@ -8,6 +8,8 @@ import "leaflet/dist/leaflet.css";
 import ClubPoint from "./components/ClubPoint";
 import { Button } from "@mui/material";
 import { clubStateStore } from "./store/clubOperationStore";
+import CustomizedInputBase from "./components/SearchInput";
+import { LatLng } from "leaflet";
 
 interface VerticalBoundsProps {
   minLat: number;
@@ -42,6 +44,10 @@ function VerticalBounds({ minLat, maxLat }: VerticalBoundsProps) {
 export default function App() {
   const mapRef = useRef<L.Map | null>(null);
 
+  function onSelected(coo: LatLng) {
+    mapRef.current?.flyTo(coo, 13);
+  }
+
   const {
     currentOperation,
     resetState,
@@ -64,12 +70,16 @@ export default function App() {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <div id="upper-div" className="overlay-map">
+          <CustomizedInputBase onSelected={onSelected} />
+        </div>
+
         {mockClubs.map((club) => (
           <ClubPoint key={club.id} club={club} />
         ))}
 
         {currentOperation && (
-          <div id="overlay-edit" className="overlay-map">
+          <div id="lower-div" className="overlay-map">
             <Button
               variant="contained"
               size="small"
