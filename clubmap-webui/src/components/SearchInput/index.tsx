@@ -24,6 +24,7 @@ export default function SearchInput({ onSelected }: SearchInputProps) {
   return (
     <Autocomplete
       id="size-small-standard"
+      className="search-input-container"
       value={value}
       onInputChange={(_, val) => setValue(val)}
       sx={{
