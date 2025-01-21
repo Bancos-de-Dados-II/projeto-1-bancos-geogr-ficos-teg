@@ -12,28 +12,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model Titulo{
-  id String @id @default(cuid())
-  nome String
-  conquitas Int
-  clubeId String?
-  clube Clube? @relation(fields: [clubeId], references: [id])
 
+model Titulo {
+  nome       String @db.VarChar(255)
+  clubeId    String
+  conquistas Int
+  clube      Clube  @relation(fields: [clubeId], references: [id], onDelete: Cascade)
+
+  @@id([nome, clubeId])
   @@map("titulos")
 }
-model Clube{
-  id String @id @default(cuid())
-  nome String
-  tecnico String
-  presidente String
-  anoFundacao Int
-  principalRival String?
-  estadio String
-  titulos Titulo[]
-  localizacao Unsupported("geometry(Point, 4326)")
-  escudo String?
+
+model Clube {
+  id             String                               @id @default(cuid())
+  nome           String                               @db.VarChar(255)
+  tecnico        String                               @db.VarChar(255)
+  presidente     String                               @db.VarChar(255)
+  anoFundacao    Int
+  principalRival String?                              @db.VarChar(255)
+  estadio        String                               @db.VarChar(255)
+  titulos        Titulo[]
+  localizacao    Unsupported("Geometry(Point, 4326)")
+  escudo_url     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("clubes")
-
 }
-
