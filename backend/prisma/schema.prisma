@@ -12,4 +12,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model Titulo{
+  id String @id @default(cuid())
+  nome String
+  conquitas Int
+  clubeId String?
+  clube Clube? @relation(fields: [clubeId], references: [id])
+
+  @@map("titulos")
+}
+model Clube{
+  id String @id @default(cuid())
+  nome String
+  tecnico String
+  presidente String
+  anoFundacao Int
+  principalRival String?
+  estadio String
+  titulos Titulo[]
+  localizacao Unsupported("geometry(Point, 4326)")
+  escudo String?
+
+  @@map("clubes")
+
+}
 
