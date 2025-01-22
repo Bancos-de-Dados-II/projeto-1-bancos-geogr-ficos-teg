@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import { LatLng } from "leaflet";
-import { mockClubs } from "../../mock";
 import { CustomInputComponent } from "./CustomInput";
 
 import "./styles.css";
+import { useClubStore } from "../../store/clubStore";
 
 const filter = createFilterOptions({
   limit: 50,
@@ -20,9 +20,11 @@ interface SearchInputProps {
 
 export default function SearchInput({ onSelected }: SearchInputProps) {
   const [value, setValue] = useState<string>("");
+  const { loading, clubs } = useClubStore();
 
   return (
     <Autocomplete
+      disabled={loading}
       id="size-small-standard"
       className="search-input-container"
       value={value}
@@ -38,10 +40,9 @@ export default function SearchInput({ onSelected }: SearchInputProps) {
         onSelected(newValue.geocode);
       }}
       filterOptions={(options, params) => {
-        if (params.inputValue.length > 0) return filter(options, params);
-        return [];
+        return filter(options, params);
       }}
-      options={mockClubs}
+      options={clubs}
       getOptionLabel={(option) => {
         if (typeof option === "string") return option;
         if (option && option.nome) return option.nome;

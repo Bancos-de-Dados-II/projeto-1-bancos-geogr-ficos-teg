@@ -7,6 +7,9 @@ import { AddCircle, Delete, CheckCircle, Clear } from "@mui/icons-material";
 import UploadBtn from "./UploadBtn";
 import { ClubUpdateOrCreate } from "../../types";
 import { clubSchema } from "../../schemas";
+import { clubStateStore } from "../../store/clubOperationStore";
+import { useClubStore } from "../../store/clubStore";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface ClubFormProps {
   club?: ClubUpdateOrCreate;
@@ -14,6 +17,13 @@ interface ClubFormProps {
 }
 
 export default function ClubForm({ onCancel, club }: ClubFormProps) {
+  const {
+    currentOperation,
+    currentOperationLocation,
+    setCurrentOperation,
+    resetState,
+  } = clubStateStore();
+  const { loading, addClub, updateClub, removeClub } = useClubStore();
   const {
     control,
     register,
@@ -25,15 +35,27 @@ export default function ClubForm({ onCancel, club }: ClubFormProps) {
     defaultValues: club || {},
   });
 
-  const onSubmit = handleSubmit(
-    (data) => {
-      // use the currentOperationLocation here
-      console.log("Form Data:", data);
-    },
-    (errors) => {
-      console.error("Form Errors:", errors);
-    },
-  );
+  const onSubmit = handleSubmit(async (data) => {
+    if (!currentOperationLocation) {
+      return;
+    }
+    const club = {
+      ...data,
+      geocode: currentOperationLocation,
+    };
+    if (currentOperation === "create") {
+      await addClub(club);
+    } else if (currentOperation === "edit") {
+      await updateClub(club);
+    }
+    resetState();
+  });
+
+  async function handleDelete() {
+    if (currentOperation !== "edit") return;
+    await removeClub(club.id);
+    resetState();
+  }
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -43,166 +65,149 @@ export default function ClubForm({ onCancel, club }: ClubFormProps) {
   return (
     <form id="club-edit-form" onSubmit={onSubmit}>
       <div id="club-edit-form-upperdiv">
-        <IconButton color="primary" size="small" type="submit">
+        <IconButton
+          color="primary"
+          size="small"
+          type="submit"
+          disabled={loading}
+        >
           <CheckCircle fontSize="large" />
         </IconButton>
-        <IconButton color="primary" size="small" onClick={onCancel}>
+        <IconButton
+          color="primary"
+          size="small"
+          onClick={onCancel}
+          disabled={loading}
+        >
           <Clear fontSize="large" />
+        </IconButton>
+        <IconButton
+          color="primary"
+          size="small"
+          onClick={handleDelete}
+          disabled={loading}
+          sx={{
+            display: currentOperation === "edit" ? "flex" : "none",
+          }}
+        >
+          <DeleteIcon fontSize="large" />
         </IconButton>
       </div>
 
-      <hr id="club-form-hr" />
+      {loading ? (
+        <div className="loader"></div>
+      ) : (
+        <>
+          <hr id="club-form-hr" />
 
-      <div id="club-edit-form-camps">
-        <TextField
-          required
-          error={!!errors.nome}
-          label="Nome"
-          variant="filled"
-          size="small"
-          {...register("nome")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
+          <div id="club-edit-form-camps">
+            <TextField
+              required
+              error={!!errors.nome}
+              label="Nome"
+              variant="filled"
+              size="small"
+              {...register("nome")}
+              helperText={errors.nome?.message}
+            />
 
-        <div id="club-edit-form-titulosdiv">
-          <span>Títulos</span>
-          {fields.map((field, index) => (
-            <div className="club-edit-form-titulofield" key={field.id}>
-              <TextField
-                error={!!errors.titulos?.[index]?.nome}
-                label="Nome"
-                variant="standard"
-                {...register(`titulos.${index}.nome`)}
-                size="small"
-                slotProps={{
-                  inputLabel: { sx: { paddingLeft: 1 } },
-                  input: {
-                    sx: {
-                      paddingLeft: 1,
-                      display: "inline-block",
-                      marginRight: "1rem",
-                    },
-                  },
-                }}
-              />
+            <div id="club-edit-form-titulosdiv">
+              <span>Títulos</span>
+              {fields.map((field, index) => (
+                <div className="club-edit-form-titulofield" key={field.id}>
+                  <TextField
+                    id="titulo-name"
+                    error={!!errors.titulos?.[index]?.nome}
+                    label="Nome"
+                    variant="standard"
+                    size="small"
+                    {...register(`titulos.${index}.nome`)}
+                    // helperText={errors.titulos?.[index]?.nome?.message}
+                  />
 
-              <TextField
-                error={!!errors.titulos?.[index]?.conquistas}
-                variant="standard"
-                size="small"
-                type="number"
-                placeholder="1"
-                {...register(`titulos.${index}.conquistas`)}
-                slotProps={{
-                  input: {
-                    sx: {
-                      width: 35,
-                      textAlign: "center",
-                      alignSelf: "flex-end",
-                      textAlignLast: "center",
-                      fontSize: "1rem",
-                    },
-                  },
-                }}
-              />
+                  <TextField
+                    id="titulo-number"
+                    error={!!errors.titulos?.[index]?.conquistas}
+                    variant="standard"
+                    size="small"
+                    type="number"
+                    placeholder="1"
+                    {...register(`titulos.${index}.conquistas`)}
+                    // helperText={errors.titulos?.[index]?.conquistas?.message}
+                  />
+
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      remove(index);
+                    }}
+                  >
+                    <Delete color="primary" />
+                  </IconButton>
+                </div>
+              ))}
 
               <IconButton
-                aria-label="delete"
-                size="small"
+                aria-label="add"
                 onClick={(e) => {
                   e.stopPropagation();
-                  remove(index);
+                  append({ nome: "", conquistas: 1 });
                 }}
               >
-                <Delete color="primary" />
+                <AddCircle color="primary" />
               </IconButton>
             </div>
-          ))}
 
-          <IconButton
-            aria-label="add"
-            onClick={(e) => {
-              e.stopPropagation();
-              append({
-                nome: "",
-                conquistas: 1,
-              });
-            }}
-          >
-            <AddCircle color="primary" />
-          </IconButton>
-        </div>
+            <TextField
+              required
+              error={!!errors.estadio}
+              label="Estádio"
+              variant="filled"
+              {...register("estadio")}
+              helperText={errors.estadio?.message}
+            />
 
-        <TextField
-          required
-          error={!!errors.estadio}
-          label="Estadio"
-          variant="filled"
-          {...register("estadio")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
+            <TextField
+              required
+              error={!!errors.anoFundacao}
+              label="Ano de Fundação"
+              variant="filled"
+              type="number"
+              {...register("anoFundacao")}
+              helperText={errors.anoFundacao?.message}
+            />
 
-        <TextField
-          required
-          error={!!errors.anoFundacao}
-          helperText={errors.anoFundacao?.message}
-          label="Ano de Fundação"
-          placeholder="1900"
-          variant="filled"
-          type="number"
-          {...register("anoFundacao")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
+            <TextField
+              required
+              error={!!errors.presidente}
+              label="Presidente"
+              variant="filled"
+              {...register("presidente")}
+              helperText={errors.presidente?.message}
+            />
 
-        <TextField
-          required
-          error={!!errors.presidente}
-          label="Presidente"
-          variant="filled"
-          {...register("presidente")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
+            <TextField
+              required
+              error={!!errors.tecnico}
+              label="Técnico"
+              variant="filled"
+              {...register("tecnico")}
+              helperText={errors.tecnico?.message}
+            />
 
-        <TextField
-          required
-          error={!!errors.tecnico}
-          label="Tecnico"
-          variant="filled"
-          {...register("tecnico")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
+            <TextField
+              label="Principal Rival"
+              variant="filled"
+              {...register("principalRival")}
+              helperText={errors.principalRival?.message}
+            />
 
-        <TextField
-          label="Principal Rival"
-          variant="filled"
-          {...register("principalRival")}
-          slotProps={{
-            inputLabel: { sx: { paddingLeft: 1 } },
-            input: { sx: { paddingLeft: 1 } },
-          }}
-        />
-
-        <UploadBtn
-          onFileSelect={(file) => {
-            setValue("escudo", file);
-          }}
-        />
-      </div>
+            <UploadBtn onFileSelect={(file) => setValue("escudo", file)} />
+          </div>
+        </>
+      )}
     </form>
   );
 }

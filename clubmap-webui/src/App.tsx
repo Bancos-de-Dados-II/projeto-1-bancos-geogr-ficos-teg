@@ -4,6 +4,7 @@ import MapOverlay from "./components/MapOverlay";
 
 import "leaflet/dist/leaflet.css";
 import "./App.css";
+import { useClubStore } from "./store/clubStore";
 
 interface VerticalBoundsProps {
   minLat: number;
@@ -36,6 +37,12 @@ function VerticalBounds({ minLat, maxLat }: VerticalBoundsProps) {
 }
 
 export default function App() {
+  const { fetchAllClubs } = useClubStore();
+
+  useEffect(() => {
+    fetchAllClubs();
+  }, [fetchAllClubs]);
+
   return (
     <div className="wrapper">
       <MapContainer

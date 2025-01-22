@@ -16,3 +16,21 @@
   display: flex;
   gap: 1rem;
 }
+
+.noGood-div {
+  width: 20rem;
+  height: 5rem;
+  top: 50%;
+  left: -20%;
+  transform: translate(-50%, -50%);
+  border-radius: 8rem;
+  position: absolute;
+  transition: left 1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noGood-div.show-up {
+  left: 50%;
+}

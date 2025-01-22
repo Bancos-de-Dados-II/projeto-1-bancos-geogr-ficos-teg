@@ -30,7 +30,7 @@ export default function UploadBtn({ onFileSelect }: UploadBtnProps) {
       {file?.name || "Escudo"}
       <input
         id="club-file-input"
-        accept="image/svg+xml"
+        accept="image/png"
         type="file"
         onChange={handleFileChange}
       />

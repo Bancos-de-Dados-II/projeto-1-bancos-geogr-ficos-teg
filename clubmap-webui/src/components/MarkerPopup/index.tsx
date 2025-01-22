@@ -26,7 +26,8 @@ export default function MarkerPopup({
 
   // it will cause an error if map is not ready
   useEffect(() => {
-    if (refReady && popupRef.current && showPopupOnOpen) popupRef.current.openOn(map);
+    if (refReady && popupRef.current && showPopupOnOpen)
+      popupRef.current.openOn(map);
   }, [refReady, map, showPopupOnOpen]);
 
   // if the operation value on the store is defined, update the club

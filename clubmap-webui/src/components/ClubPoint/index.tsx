@@ -53,7 +53,7 @@ export default function ClubPoint({ club }: ClubPointProps) {
         icon: club.escudo,
       }}
     >
-      {isEditing ? (
+      {isEditing && currentOperation ? (
         <ClubForm
           onCancel={handleCancel}
           club={{ ...club, escudo: undefined }}
@@ -86,11 +86,12 @@ export default function ClubPoint({ club }: ClubPointProps) {
             <li>
               Títulos:
               <ul id="titulos">
-                {club.titulos.map((titulo, index) => (
-                  <li key={index}>
-                    {titulo?.nome}: {titulo?.conquistas}
-                  </li>
-                ))}
+                {club.titulos &&
+                  club.titulos.map((titulo, index) => (
+                    <li key={index}>
+                      {titulo?.nome}: {titulo?.conquistas}
+                    </li>
+                  ))}
               </ul>
             </li>
           </ul>

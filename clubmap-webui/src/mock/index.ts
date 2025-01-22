@@ -1,15 +1,15 @@
 import { Icon, LatLng } from "leaflet";
-import { Club } from "../types";
+import { ClubWithIcon } from "../types";
 
 // oferecimento chat gpt, o melhor que há
-export const mockClubs: Club[] = [
+export const mockClubs: ClubWithIcon[] = [
   {
     id: "1",
     nome: "Clube Estrela",
     tecnico: "Carlos Silva",
     presidente: "João Mendes",
     anoFundacao: 1920,
-    geocode: new LatLng(-23.55052, -46.633308),
+    geocode: new LatLng(-3.6883, 40.453),
     principalRival: "Clube Lunar",
     estadio: "Estádio Estrela",
     escudo: new Icon({

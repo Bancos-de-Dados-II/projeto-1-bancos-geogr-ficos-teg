@@ -2,6 +2,7 @@ import { LatLng } from "leaflet";
 import { z } from "zod";
 
 export const clubSchema = z.object({
+  id: z.string().optional(),
   nome: z.string().trim().nonempty({ message: "Não pode ser vazio!" }),
   tecnico: z.string().trim().nonempty({ message: "Não pode ser vazio!" }),
   presidente: z.string().trim().nonempty({ message: "Não pode ser vazio!" }),
@@ -12,7 +13,7 @@ export const clubSchema = z.object({
     .max(2022, { message: "Deve ser no máximo 2022." }),
   escudo: z.custom((v) => v instanceof File).optional(),
   estadio: z.string().trim().nonempty({ message: "Não pode ser vazio!" }),
-  geocode: z.custom<LatLng>((v: unknown) => v instanceof LatLng),
+  geocode: z.custom<LatLng>().optional(),
   titulos: z.array(
     z
       .object({
