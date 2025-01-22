@@ -10,7 +10,7 @@ Projeto desenvolvido para a disciplina de Banco de Dados II do curso de Análise
 
 ## Status do Projeto
 
-:arrows_counterclockwise: Em progresso
+![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
 
 ## :man_mechanic: Linguagens e Ferramentas Utilizadas
 
@@ -40,8 +40,18 @@ Projeto desenvolvido para a disciplina de Banco de Dados II do curso de Análise
 
 1. `git clone git@github.com:Bancos-de-Dados-II/projeto-1-bancos-geogr-ficos-teg.git`
 2. `cd projeto-1-bancos-geogr-ficos-teg `
+
+### Front end
+
 3. `cd clubmap-webui`
-4. `npm run dev`
+4. `npm i`
+5. `npm run dev`
+
+### Back end
+
+6. `cd backend`
+7. `npm i`
+8. `npm run dev`
 
 ## :technologist: Autores
 
